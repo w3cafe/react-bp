@@ -1,7 +1,9 @@
 import {Provider} from 'react-redux';
 import App, {Container} from 'next/app';
+import Head from 'next/head';
 import withRedux from 'next-redux-wrapper';
 import {initStore} from '../redux';
+import Theme from './Theme';
 
 class MyApp extends App {
     static async getInitialProps({Component, ctx}) {
@@ -19,7 +21,13 @@ class MyApp extends App {
         return (
             <Container>
                 <Provider store={store}>
-                    <Component{...pageProps}/>
+                    <Head>
+                        <title>React BoilerPlate</title>
+                        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+                    </Head>
+                    <Theme>
+                        <Component{...pageProps}/>
+                    </Theme>
                 </Provider>
             </Container>
         );
